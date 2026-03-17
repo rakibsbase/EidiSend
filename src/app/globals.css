@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* -----------------------------
+   Theme Variables
+----------------------------- */
+:root {
+  --background: #f0faf4;        /* mint-green page bg — matches homepage */
+  --foreground: #0f172a;        /* slate-900 */
+  --primary: #10b981;           /* emerald-500 */
+  --primary-dark: #059669;      /* emerald-600 */
+  --surface: #ffffff;           /* cards, navbar */
+  --surface-border: #d1fae5;    /* emerald-100 */
+  --muted: #64748b;             /* slate-500 */
+}
+
+.dark {
+  --background: #071210;        /* deep dark green-black */
+  --foreground: #f1f5f9;        /* slate-100 */
+  --primary: #34d399;           /* emerald-400 — brighter for dark */
+  --primary-dark: #10b981;      /* emerald-500 */
+  --surface: #0a1a12;           /* dark navbar/card bg */
+  --surface-border: #14532d33; /* emerald-900/20 */
+  --muted: #94a3b8;             /* slate-400 */
+}
+
+/* -----------------------------
+   Base Styles
+----------------------------- */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* -----------------------------
+   Utility Layer
+----------------------------- */
+@layer utilities {
+  .bg-background {
+    background-color: var(--background);
+  }
+
+  .text-foreground {
+    color: var(--foreground);
+  }
+
+  .bg-primary {
+    background-color: var(--primary);
+  }
+
+  .bg-surface {
+    background-color: var(--surface);
+  }
+
+  .border-surface {
+    border-color: var(--surface-border);
+  }
+
+  .text-muted {
+    color: var(--muted);
+  }
+}
+
+/* -----------------------------
+   Scrollbar Styling
+----------------------------- */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
