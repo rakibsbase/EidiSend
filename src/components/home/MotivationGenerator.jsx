@@ -43,25 +43,25 @@ export default function MotivationGenerator() {
   const q = current !== null ? quotes[current] : null;
 
   return (
-    <section className="w-full py-10 md:py-14 bg-[#f0faf4] dark:bg-[#071210]">
+    <section className="w-full py-10 md:py-14 bg-page">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="max-w-[91.666667%] mx-auto rounded-2xl bg-white dark:bg-[#0d1f16] border border-emerald-100 dark:border-emerald-900/30 shadow-sm px-6 sm:px-10 py-10 md:py-12 flex flex-col items-center text-center"
+        className="max-w-[91.666667%] mx-auto rounded-2xl border shadow-sm px-6 sm:px-10 py-10 md:py-12 flex flex-col items-center text-center bg-surface border-theme"
       >
 
         {/* Icon */}
-        <div className="w-12 h-12 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center mb-5 text-xl">
+        <div className="w-12 h-12 rounded-full flex items-center justify-center mb-5 text-xl bg-brand-subtle">
           💬
         </div>
 
         {/* Title */}
-        <h2 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-1.5">
+        <h2 className="text-lg sm:text-xl font-bold mb-1.5 text-theme-primary">
           Need a reason to send Salami?
         </h2>
-        <p className="text-sm text-slate-400 dark:text-slate-500 mb-8">
+        <p className="text-sm mb-8 text-theme-subtle">
           We wrote them so you don't have to think.
         </p>
 
@@ -75,7 +75,7 @@ export default function MotivationGenerator() {
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
                 transition={{ duration: 0.28, ease: "easeOut" }}
-                className="text-base sm:text-lg md:text-xl text-slate-700 dark:text-slate-200 font-medium leading-relaxed italic"
+                className="text-base sm:text-lg md:text-xl font-medium leading-relaxed italic text-theme-secondary"
               >
                 "{q.text}" {q.emoji}
               </motion.p>
@@ -86,7 +86,7 @@ export default function MotivationGenerator() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                className="text-sm text-slate-300 dark:text-slate-600"
+                className="text-sm text-theme-subtle"
               >
                 Your motivation is one click away...
               </motion.p>

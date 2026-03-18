@@ -34,9 +34,8 @@ export default function Error({ error, reset }) {
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-5 bg-[#f0faf4] dark:bg-[#071210]">
+    <div className="min-h-screen flex items-center justify-center px-5 bg-page">
       <div className="w-full max-w-md text-center">
-
         {/* Emoji with wobble */}
         <motion.div
           animate={{ rotate: [0, -8, 8, -5, 5, 0] }}
@@ -51,7 +50,7 @@ export default function Error({ error, reset }) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3"
+          className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3 text-theme-primary"
         >
           Yikes. Something broke.
         </motion.h1>
@@ -70,14 +69,14 @@ export default function Error({ error, reset }) {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: -8, filter: "blur(3px)" }}
               transition={{ duration: 0.25 }}
-              className="text-sm text-slate-500 dark:text-slate-400 italic leading-relaxed cursor-pointer"
+              className="text-sm italic leading-relaxed cursor-pointer text-theme-muted"
               onClick={nextLine}
               title="Click for another excuse"
             >
               "{funnyLines[lineIndex]}"
             </motion.p>
           </AnimatePresence>
-          <p className="text-xs text-slate-400 dark:text-slate-600 mt-1">
+          <p className="text-xs mt-1 text-theme-secondary">
             (tap the quote for more developer excuses)
           </p>
         </motion.div>
@@ -87,11 +86,12 @@ export default function Error({ error, reset }) {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.2 }}
-          className="my-7 px-5 py-5 rounded-2xl bg-white dark:bg-[#0d1f16] border border-emerald-100 dark:border-emerald-900/30 shadow-sm"
+          className="my-7 px-5 py-5 rounded-2xl border shadow-sm bg-surface border-theme"
         >
-          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-            The developer who built this is a broke student surviving on instant noodles. 
-            A small Salami might just motivate him to fix this bug faster. 🍜
+          <p className="text-sm leading-relaxed text-theme-secondary">
+            The developer who built this is a broke student surviving on instant
+            noodles. A small Salami might just motivate him to fix this bug
+            faster. 🍜
           </p>
           <Link
             href="/send"
@@ -125,13 +125,12 @@ export default function Error({ error, reset }) {
 
           <Link
             href="/"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-[#0d1f16] border border-slate-200 dark:border-emerald-900/30 text-slate-600 dark:text-slate-300 text-sm font-semibold hover:bg-emerald-50 dark:hover:bg-emerald-900/20 active:scale-95 transition-all duration-150"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-semibold active:scale-95 transition-all duration-150 bg-surface text-theme-secondary border-theme hover:bg-brand-subtle"
           >
             <Home size={15} />
             Go home
           </Link>
         </motion.div>
-
       </div>
     </div>
   );

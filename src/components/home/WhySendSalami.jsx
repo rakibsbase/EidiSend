@@ -54,7 +54,7 @@ const cardVariants = {
 
 export default function WhySendSalami() {
   return (
-    <section className="w-full py-16 md:py-24 bg-[#f0faf4] dark:bg-[#071210]">
+    <section className="w-full py-16 md:py-24 bg-page">
       <div className="max-w-[91.666667%] mx-auto">
         {/* Header */}
         <motion.div
@@ -64,10 +64,10 @@ export default function WhySendSalami() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-theme-primary">
             Why send digital Salami?
           </h2>
-          <p className="text-base text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+          <p className="text-base max-w-md mx-auto text-theme-muted">
             The tradition stays. The hassle doesn't.
           </p>
         </motion.div>
@@ -85,25 +85,25 @@ export default function WhySendSalami() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-30px" }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="group relative bg-white dark:bg-[#0d1f16] rounded-2xl p-6 border border-emerald-100 dark:border-emerald-900/30 shadow-sm hover:shadow-md hover:shadow-emerald-100/60 dark:hover:shadow-emerald-900/20 transition-shadow duration-200 cursor-default"
+                className="group relative rounded-2xl p-6 border shadow-sm hover:shadow-md hover:shadow-emerald-100/60 dark:hover:shadow-emerald-900/20 transition-shadow duration-200 cursor-default bg-surface border-theme"
               >
                 {/* Hover glow */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-50/60 to-transparent dark:from-emerald-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
 
                 {/* Icon */}
-                <div className="relative w-11 h-11 rounded-xl bg-emerald-50 dark:bg-emerald-900/40 flex items-center justify-center mb-5">
+                <div className="relative w-11 h-11 rounded-xl flex items-center justify-center mb-5 bg-brand-subtle">
                   <Icon
                     size={20}
                     strokeWidth={2}
-                    className="text-emerald-600 dark:text-emerald-400"
+                    className=" text-brand-theme"
                   />
                 </div>
 
                 {/* Text */}
-                <h3 className="relative text-base font-bold text-slate-800 dark:text-white mb-2">
+                <h3 className="relative text-base font-bold mb-2 text-theme-primary">
                   {f.title}
                 </h3>
-                <p className="relative text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                <p className="relative text-sm leading-relaxed text-theme-muted">
                   {f.desc}
                 </p>
               </motion.div>

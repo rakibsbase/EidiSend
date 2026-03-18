@@ -19,7 +19,7 @@ export default function NotFound() {
   const nextLine = () => setLineIndex((i) => (i + 1) % funnyLines.length);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-5 bg-[#f0faf4] dark:bg-[#071210]">
+    <div className="min-h-screen flex items-center justify-center px-5 bg-page">
       <div className="w-full max-w-md text-center">
 
         {/* 404 big number */}
@@ -54,7 +54,7 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.1 }}
-          className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3"
+          className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3 text-theme-primary"
         >
           Nothing to see here.
         </motion.h1>
@@ -73,14 +73,14 @@ export default function NotFound() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: -8, filter: "blur(3px)" }}
               transition={{ duration: 0.25 }}
-              className="text-sm text-slate-500 dark:text-slate-400 italic leading-relaxed cursor-pointer"
+              className="text-sm italic leading-relaxed cursor-pointer text-theme-muted"
               onClick={nextLine}
               title="Click for more"
             >
               "{funnyLines[lineIndex]}"
             </motion.p>
           </AnimatePresence>
-          <p className="text-xs text-slate-400 dark:text-slate-600 mt-1">
+          <p className="text-xs mt-1 text-theme-secondary">
             (tap for more tragic analogies)
           </p>
         </motion.div>
@@ -90,9 +90,9 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.26 }}
-          className="my-7 px-5 py-5 rounded-2xl bg-white dark:bg-[#0d1f16] border border-emerald-100 dark:border-emerald-900/30 shadow-sm"
+          className="my-7 px-5 py-5 rounded-2xl border shadow-sm bg-surface border-theme"
         >
-          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p className="text-sm leading-relaxed text-theme-secondary">
             While you're lost, the developer is also lost —
             somewhere between fixing bugs and waiting for Eid Salami.
             A little donation goes a long way. 🧑‍💻

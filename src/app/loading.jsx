@@ -22,7 +22,7 @@ export default function Loading() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-5 bg-[#f0faf4] dark:bg-[#071210]">
+    <div className="min-h-screen flex flex-col items-center justify-center px-5 bg-page">
 
       {/* Spinner */}
       <div className="relative w-12 h-12 mb-8">
@@ -45,7 +45,7 @@ export default function Loading() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="text-base font-bold text-slate-800 dark:text-white mb-3"
+        className="text-base font-bold mb-3 text-theme-primary"
       >
         Just a moment...
       </motion.p>
@@ -59,7 +59,7 @@ export default function Loading() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -6, filter: "blur(3px)" }}
             transition={{ duration: 0.3 }}
-            className="text-sm text-slate-400 dark:text-slate-500 italic text-center"
+            className="text-sm italic text-center text-theme-subtle"
           >
             {loadingLines[lineIndex]}
           </motion.p>

@@ -7,8 +7,8 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
 const footerLinks = [
-  { name: "Privacy Policy", href: "/privacy" },
-  { name: "Terms of Service", href: "/terms" },
+  { name: "Privacy Policy", href: "/privacy-policy" },
+  { name: "Terms of Service", href: "/terms-of-service" },
   { name: "Contact Us", href: "/contact" },
 ];
 
@@ -56,7 +56,7 @@ export default function Footer() {
   return (
     <footer
       ref={ref}
-      className="relative w-full bg-white dark:bg-[#0a1a12] border-t border-emerald-100 dark:border-emerald-900/30 overflow-hidden"
+      className="relative w-full border-t overflow-hidden bg-overlay border-theme"
     >
       {/* Subtle top glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 dark:via-emerald-500/30 to-transparent pointer-events-none" />
@@ -87,7 +87,7 @@ export default function Footer() {
               <Link
                 key={i}
                 href={link.href}
-                className="text-sm text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-150"
+                className="text-sm hover:text-brand-theme transition-colors duration-150 text-theme-muted"
               >
                 {link.name}
               </Link>
@@ -97,7 +97,7 @@ export default function Footer() {
           {/* Copyright — right */}
           <motion.p
             {...fadeUp(0.14)}
-            className="text-xs text-slate-400 dark:text-slate-500 text-center md:text-right whitespace-nowrap"
+            className="text-xs text-center md:text-right whitespace-nowrap text-theme-subtle"
           >
             © 2026 Eid Salami Web. All rights reserved.
           </motion.p>
@@ -109,7 +109,7 @@ export default function Footer() {
           whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
-          className="h-px w-full bg-emerald-100 dark:bg-emerald-900/30 origin-left"
+          className="h-px w-full origin-left bg-brand-subtle"
         />
 
         {/* ── Developer credit row ── */}
@@ -118,7 +118,7 @@ export default function Footer() {
           className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4"
         >
           {/* Credit text */}
-          <p className="text-xs text-slate-400 dark:text-slate-500 flex items-center gap-1.5 flex-wrap justify-center">
+          <p className="text-xs flex items-center gap-1.5 flex-wrap justify-center text-theme-subtle">
             <span>Designed & Developed with</span>
             <span className="text-rose-400">♥</span>
             <span>by</span>
@@ -126,7 +126,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/rakib-aziz-b33553147"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-150 inline-flex items-center gap-1 group"
+              className="font-semibold hover:text-brand-theme transition-colors duration-150 inline-flex items-center gap-1 group text-theme-secondary"
             >
               Rakib Aziz
               <ExternalLink
@@ -145,7 +145,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.name}
-                className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/25 transition-all duration-150"
+                className="w-7 h-7 rounded-lg flex items-center justify-center hover:text-brand-theme transition-all duration-150 text-theme-subtle hover:bg-brand-subtle"
               >
                 {s.icon}
               </a>

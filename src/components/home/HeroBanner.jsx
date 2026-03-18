@@ -125,7 +125,7 @@ export default function HeroBanner() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="text-sm text-emerald-600 dark:text-emerald-400 font-medium mb-4 tracking-wide"
+            className="text-sm font-medium mb-4 tracking-wide text-brand-theme"
           >
             Because love travels faster than cash 💸
           </motion.p>
@@ -135,7 +135,7 @@ export default function HeroBanner() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold text-slate-900 dark:text-white leading-[1.07] tracking-tight mb-5"
+            className="text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold leading-[1.07] tracking-tight mb-5 text-theme-primary"
           >
             Eid Mubarak
           </motion.h1>
@@ -145,7 +145,7 @@ export default function HeroBanner() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.16 }}
-            className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8"
+            className="text-base md:text-lg leading-relaxed mb-8 text-theme-secondary"
           >
             Send a digital gift of joy to your loved ones this Eid. The fastest,
             most secure way to share your blessings.
@@ -168,7 +168,7 @@ export default function HeroBanner() {
 
             <button
               onClick={handleShare}
-              className="inline-flex items-center justify-center gap-2 min-w-[160px] px-7 py-2.5 md:py-3.5 rounded-xl bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-white/15 backdrop-blur-sm active:scale-95 text-slate-700 dark:text-slate-200 text-sm font-semibold border border-white/60 dark:border-white/10 shadow-sm transition-all duration-150"
+              className="inline-flex items-center justify-center gap-2 min-w-[160px] px-7 py-2.5 md:py-3.5 rounded-xl bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-white/15 backdrop-blur-sm active:scale-95 text-sm font-semibold border border-white/60 dark:border-white/10 shadow-sm transition-all duration-150 text-slate-900 dark:text-slate-200 cursor-pointer"
             >
               <Share2 size={14} strokeWidth={2} />
               {sharing ? "Link Copied!" : "Share"}

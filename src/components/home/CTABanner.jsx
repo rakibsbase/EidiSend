@@ -6,20 +6,24 @@ import { DollarSign } from "lucide-react";
 
 export default function CTABanner() {
   return (
-    <section className="w-full py-10 md:py-14 bg-[#f0faf4] dark:bg-[#071210]">
+    <section className="w-full py-10 md:py-14 bg-page">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="relative max-w-[91.666667%] mx-auto overflow-hidden rounded-2xl px-8 py-14 md:py-16 text-center"
-        style={{ background: "linear-gradient(135deg, #0d4a2a 0%, #134e35 50%, #0a3d22 100%)" }}
+        style={{
+          background:
+            "linear-gradient(135deg, #0d4a2a 0%, #134e35 50%, #0a3d22 100%)",
+        }}
       >
         {/* Subtle dot pattern */}
         <div
           className="absolute inset-0 opacity-[0.06] pointer-events-none"
           style={{
-            backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)",
+            backgroundImage:
+              "radial-gradient(circle, #fff 1px, transparent 1px)",
             backgroundSize: "22px 22px",
           }}
         />
@@ -29,7 +33,6 @@ export default function CTABanner() {
 
         {/* Content */}
         <div className="relative z-10 max-w-xl mx-auto">
-
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +78,6 @@ export default function CTABanner() {
               Send Salami Now
             </Link>
           </motion.div>
-
         </div>
       </motion.div>
     </section>

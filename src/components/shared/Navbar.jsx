@@ -39,11 +39,7 @@ export default function Navbar() {
   return (
     <>
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 bg-white/95 dark:bg-[#0a1a12]/95 backdrop-blur-md ${
-        scrolled
-          ? "border-b border-emerald-100 dark:border-emerald-900/30 shadow-sm shadow-emerald-50 dark:shadow-black/20"
-          : "border-b border-emerald-50 dark:border-white/5"
-      }`}
+      className={`sticky top-0 z-50 w-full transition-all duration-300 bg-overlay/95 backdrop-blur-md ${ scrolled ? "border-b shadow-sm shadow-emerald-50 dark:shadow-black/20" : "border-b border-theme" } border-theme`}
     >
       <div className="flex items-center justify-between px-5 md:px-12 h-16">
         {/* Logo */}
@@ -67,11 +63,7 @@ export default function Navbar() {
               <Link
                 key={i}
                 href={item.href}
-                className={`relative pb-1 text-sm font-medium transition-colors duration-200 group ${
-                  active
-                    ? "text-emerald-700 dark:text-emerald-400"
-                    : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"
-                }`}
+                className={`relative pb-1 text-sm font-medium transition-colors duration-200 group ${ active ? "text-brand-theme" : "hover:text-theme-primary" } text-theme-secondary`}
               >
                 {item.name}
                 <span
@@ -93,7 +85,7 @@ export default function Navbar() {
             <button
               onClick={cycleTheme}
               aria-label="Toggle theme"
-              className="hidden md:block p-2.5 rounded-lg text-slate-400 dark:text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-150"
+              className="hidden md:block p-2.5 rounded-lg hover:text-brand-theme transition-all duration-150 text-theme-subtle hover:bg-brand-subtle"
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -113,7 +105,7 @@ export default function Navbar() {
           {/* Hamburger */}
           <button
             aria-label="Open menu"
-            className="md:hidden p-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-150"
+            className="md:hidden p-2.5 rounded-lg hover:text-brand-theme transition-all duration-150 text-theme-muted hover:bg-brand-subtle"
             onClick={() => setOpen(true)}
           >
             <Menu size={22} />
@@ -124,7 +116,9 @@ export default function Navbar() {
             href="/send"
             className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-sm font-semibold transition-all duration-150 shadow-sm shadow-emerald-600/25 ml-1"
           >
-            <DollarSign size={15} strokeWidth={2} />
+            <div className="bg-white/20 p-1 rounded-md">
+              <DollarSign size={13} strokeWidth={2} className="text-white" />
+            </div>
             Send Salami
           </Link>
         </div>
