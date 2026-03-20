@@ -1,8 +1,8 @@
 import PrivacyPolicyContent from "./PrivacyPolicyContent";
 
 export const metadata = {
-  title: "Privacy Policy — EidiSend",
-  description: "How EidiSend collects, uses, and protects your personal data.",
+  title: "Privacy Policy - EidiSend Bangladesh",
+  description: "Read our privacy policy to understand how EidiSend collects and protects your digital Salami transaction data.",
 };
 
 export default function PrivacyPolicyPage() {

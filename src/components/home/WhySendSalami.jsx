@@ -1,3 +1,8 @@
+/**
+ * @file WhySendSalami.jsx
+ * @description A feature highlight section explaining the benefits of using digital Salami over traditional methods.
+ */
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -10,70 +15,80 @@ import {
   Gift,
 } from "lucide-react";
 
+// --- Configuration Data ---
+
 const features = [
   {
     icon: Zap,
-    title: "Instant Delivery",
-    desc: "No envelope, no delays. Your Salami lands in seconds — whether they're next door or across the globe.",
+    title: "Instant Propagation",
+    desc: "No physical envelopes or logistical delays. Your Salami reaches its destination in seconds, across any distance.",
   },
   {
     icon: HeartHandshake,
-    title: "Personal Touch",
-    desc: "Add a heartfelt note that actually sounds like you. Not a template — a message they'll remember.",
+    title: "Emotional Resonance",
+    desc: "Incorporate a personalized message that actually sounds like you—not a cold, generic template.",
   },
   {
     icon: ShieldCheck,
-    title: "Secure Transfers",
-    desc: "Every transaction is encrypted end-to-end. Your blessings travel safely, every single time.",
+    title: "Encrypted Security",
+    desc: "Every transaction is fortified with end-to-end encryption. Your blessings travel through a secure, private corridor.",
   },
   {
     icon: Clock,
-    title: "Send Anytime",
-    desc: "3AM or 3PM — Eid doesn't wait for business hours. Neither should your Salami.",
+    title: "Temporal Freedom",
+    desc: "3 AM or 3 PM—Eid doesn't adhere to business hours, and neither should your generosity.",
   },
   {
     icon: Smartphone,
-    title: "Works Everywhere",
-    desc: "Phone, tablet, laptop — no app download needed. If they have a screen, they can receive it.",
+    title: "Cross-Device Utility",
+    desc: "Responsive and accessible on any screen. No specialized apps required to receive your gift.",
   },
   {
     icon: Gift,
-    title: "It Feels Like a Gift",
-    desc: "Because it is. Digital doesn't mean impersonal — done right, it hits harder than cash in an envelope.",
+    title: "Premium Experience",
+    desc: "Digital doesn't mean impersonal. When executed correctly, a digital gift carries significant weight.",
   },
 ];
 
+// --- Animation Variants ---
+
 const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 30 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, delay: i * 0.09, ease: "easeOut" },
+    transition: { 
+      duration: 0.5, 
+      delay: i * 0.08, 
+      ease: [0.22, 1, 0.36, 1] 
+    },
   }),
 };
 
 export default function WhySendSalami() {
   return (
-    <section className="w-full py-16 md:py-24 bg-page">
-      <div className="max-w-[91.666667%] mx-auto">
-        {/* Header */}
+    <section className="w-full py-20 md:py-28 bg-page">
+      <div className="max-w-[1280px] w-[91.666667%] mx-auto">
+        
+        {/* --- Section Header --- */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-center mb-12 md:mb-16"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-theme-primary">
-            Why send digital Salami?
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-5 text-theme-primary">
+            Evolved Traditions.
           </h2>
-          <p className="text-base max-w-md mx-auto text-theme-muted">
-            The tradition stays. The hassle doesn't.
+          <p className="text-base md:text-lg max-w-lg mx-auto text-theme-muted font-medium leading-relaxed">
+            The heart of the custom remains unchanged, while the delivery 
+            mechanism reaches modern efficiency.
           </p>
         </motion.div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {/* --- Feature Grid --- */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {features.map((f, i) => {
             const Icon = f.icon;
             return (
@@ -83,29 +98,36 @@ export default function WhySendSalami() {
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-30px" }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="group relative rounded-2xl p-6 border shadow-sm hover:shadow-md hover:shadow-emerald-100/60 dark:hover:shadow-emerald-900/20 transition-shadow duration-200 cursor-default bg-surface border-theme"
+                viewport={{ once: true, margin: "-40px" }}
+                whileHover={{ y: -6, transition: { duration: 0.3, ease: "circOut" } }}
+                className="group relative rounded-[2rem] p-8 border border-theme bg-surface shadow-sm hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 cursor-default"
               >
-                {/* Hover glow */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-50/60 to-transparent dark:from-emerald-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+                {/* Visual hover highlight */}
+                <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-emerald-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                {/* Icon */}
-                <div className="relative w-11 h-11 rounded-xl flex items-center justify-center mb-5 bg-brand-subtle">
+                {/* Aesthetic Icon Wrapper */}
+                <div className="relative w-14 h-14 rounded-2xl flex items-center justify-center mb-8 bg-brand-subtle shadow-inner">
                   <Icon
-                    size={20}
-                    strokeWidth={2}
-                    className=" text-brand-theme"
+                    size={22}
+                    strokeWidth={2.5}
+                    className="text-brand-theme group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
 
-                {/* Text */}
-                <h3 className="relative text-base font-bold mb-2 text-theme-primary">
-                  {f.title}
-                </h3>
-                <p className="relative text-sm leading-relaxed text-theme-muted">
-                  {f.desc}
-                </p>
+                {/* Text Content Hierarchy */}
+                <div className="relative z-10">
+                  <h3 className="text-xl font-black mb-3 text-theme-primary tracking-tight group-hover:text-brand-theme transition-colors">
+                    {f.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-theme-muted font-medium opacity-90">
+                    {f.desc}
+                  </p>
+                </div>
+
+                {/* Decorative corner accent */}
+                <div className="absolute top-6 right-8 opacity-0 group-hover:opacity-20 transition-opacity duration-300">
+                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                </div>
               </motion.div>
             );
           })}

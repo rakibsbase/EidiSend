@@ -1,43 +1,45 @@
 @import "tailwindcss";
 
 :root {
-  --bg-page:              #f0faf4;
-  --bg-surface:           #ffffff;
-  --bg-surface-raised:    #f8fffe;
-  --bg-overlay:           #ffffff;
-  --text-primary:         #0f172a;
-  --text-secondary:       #374151;
-  --text-muted:           #64748b;
-  --text-subtle:          #94a3b8;
-  --brand:                #10b981;
-  --brand-hover:          #059669;
-  --brand-subtle:         #d1fae5;
-  --brand-subtle-hover:   #a7f3d0;
-  --border:               #d1fae5;
-  --border-strong:        #6ee7b7;
-  --shadow-brand:         rgba(16, 185, 129, 0.15);
+  --bg-page: #f0faf4;
+  --bg-surface: #ffffff;
+  --bg-surface-raised: #f8fffe;
+  --bg-overlay: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #374151;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --brand: #10b981;
+  --brand-hover: #059669;
+  --brand-subtle: #d1fae5;
+  --brand-subtle-hover: #a7f3d0;
+  --border: #d1fae5;
+  --border-strong: #6ee7b7;
+  --shadow-brand: rgba(16, 185, 129, 0.15);
 }
 
 .dark {
-  --bg-page:              #071210;
-  --bg-surface:           #0d1f16;
-  --bg-surface-raised:    #102318;
-  --bg-overlay:         #0a1a12;
-  --text-primary:         #f1f5f9;
-  --text-secondary:       #cbd5e1;
-  --text-muted:         #94a3b8;
-  --text-subtle:        #475569;
-  --brand:                #34d399;
-  --brand-hover:          #10b981;
-  --brand-subtle:         rgba(20, 83, 45, 0.35);
-  --brand-subtle-hover:   rgba(20, 83, 45, 0.55);
-  --border:               rgba(20, 83, 45, 0.30);
-  --border-strong:        rgba(52, 211, 153, 0.20);
-  --shadow-brand:         rgba(52, 211, 153, 0.08);
+  --bg-page: #071210;
+  --bg-surface: #0d1f16;
+  --bg-surface-raised: #102318;
+  --bg-overlay: #0a1a12;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-subtle: #475569;
+  --brand: #34d399;
+  --brand-hover: #10b981;
+  --brand-subtle: rgba(20, 83, 45, 0.35);
+  --brand-subtle-hover: rgba(20, 83, 45, 0.55);
+  --border: rgba(20, 83, 45, 0.3);
+  --border-strong: rgba(52, 211, 153, 0.2);
+  --shadow-brand: rgba(52, 211, 153, 0.08);
 }
 
 html {
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 body {
@@ -46,26 +48,60 @@ body {
 }
 
 @layer utilities {
-  .bg-page              { background-color: var(--bg-page); }
-  .bg-surface           { background-color: var(--bg-surface); }
-  .bg-surface-raised    { background-color: var(--bg-surface-raised); }
-  .bg-overlay           { background-color: var(--bg-overlay); }
-  .bg-brand-subtle      { background-color: var(--brand-subtle); }
+  .bg-page {
+    background-color: var(--bg-page);
+  }
+  .bg-surface {
+    background-color: var(--bg-surface);
+  }
+  .bg-surface-raised {
+    background-color: var(--bg-surface-raised);
+  }
+  .bg-overlay {
+    background-color: var(--bg-overlay);
+  }
+  .bg-brand-subtle {
+    background-color: var(--brand-subtle);
+  }
 
-  .text-theme-primary   { color: var(--text-primary); }
-  .text-theme-secondary { color: var(--text-secondary); }
-  .text-theme-muted     { color: var(--text-muted); }
-  .text-theme-subtle    { color: var(--text-subtle); }
-  .text-brand-theme     { color: var(--brand); }
+  .text-theme-primary {
+    color: var(--text-primary);
+  }
+  .text-theme-secondary {
+    color: var(--text-secondary);
+  }
+  .text-theme-muted {
+    color: var(--text-muted);
+  }
+  .text-theme-subtle {
+    color: var(--text-subtle);
+  }
+  .text-brand-theme {
+    color: var(--brand);
+  }
 
-  .border-theme         { border-color: var(--border); }
-  .border-theme-strong  { border-color: var(--border-strong); }
+  .border-theme {
+    border-color: var(--border);
+  }
+  .border-theme-strong {
+    border-color: var(--border-strong);
+  }
 
-  .hover\:bg-brand-subtle:hover        { background-color: var(--brand-subtle); }
-  .hover\:text-brand-theme:hover       { color: var(--brand); }
-  .hover\:border-theme-strong:hover    { border-color: var(--border-strong); }
-  .focus\:border-theme-strong:focus    { border-color: var(--border-strong); }
-  .focus\:ring-brand:focus             { --tw-ring-color: var(--brand); }
+  .hover\:bg-brand-subtle:hover {
+    background-color: var(--brand-subtle);
+  }
+  .hover\:text-brand-theme:hover {
+    color: var(--brand);
+  }
+  .hover\:border-theme-strong:hover {
+    border-color: var(--border-strong);
+  }
+  .focus\:border-theme-strong:focus {
+    border-color: var(--border-strong);
+  }
+  .focus\:ring-brand:focus {
+    --tw-ring-color: var(--brand);
+  }
 }
 
 /* -----------------------------

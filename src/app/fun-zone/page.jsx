@@ -3,9 +3,8 @@ import SalamiCalculator from "@/components/funZone/SalamiCalculator";
 import SurpriseBox from "@/components/funZone/SurpriseBox";
 
 export const metadata = {
-  title: "Fun Zone — EidiSend",
-  description:
-    "Surprise boxes, Salami calculators, and Eid personality tests. Because Eid should be fun.",
+  title: "Eid Fun Zone - Salami Calculator & Games",
+  description: "Experience the Joy of Eid with our Fun Zone. Calculate your Salami, take the Eid Personality Quiz, and more!",
 };
 
 export default function FunZonePage() {

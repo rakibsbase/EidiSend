@@ -1,8 +1,15 @@
+/**
+ * @file MotivationGenerator.jsx
+ * @description A playful interactive tool that provides humorous reasons (motivation) to send Eid Salami.
+ */
+
 "use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shuffle } from "lucide-react";
+
+// --- Configuration Data ---
 
 const quotes = [
   { text: "Your uncle gets a car every Eid. The least you can do is send Salami.", emoji: "🚗" },
@@ -23,61 +30,75 @@ const quotes = [
 ];
 
 export default function MotivationGenerator() {
+  // --- Local State ---
   const [current, setCurrent] = useState(null);
   const [key, setKey] = useState(0);
   const [spinning, setSpinning] = useState(false);
 
-  const handleNext = () => {
+  /**
+   * Selects a random quote from the configuration, avoiding duplicates.
+   */
+  const handleShuffle = () => {
     if (spinning) return;
     setSpinning(true);
+    
+    // Artificial vibration/spinning effect duration
     setTimeout(() => {
       let next;
-      do { next = Math.floor(Math.random() * quotes.length); }
-      while (next === current);
+      // Ensure we don't pick the same quote repeatedly if possible
+      do { 
+        next = Math.floor(Math.random() * quotes.length); 
+      } while (next === current && quotes.length > 1);
+      
       setCurrent(next);
       setKey((k) => k + 1);
       setSpinning(false);
-    }, 180);
+    }, 280);
   };
 
-  const q = current !== null ? quotes[current] : null;
+  const activeQuote = current !== null ? quotes[current] : null;
 
   return (
-    <section className="w-full py-10 md:py-14 bg-page">
+    <section className="w-full py-12 md:py-20 bg-page">
+      
+      {/* Dynamic Content Container */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="max-w-[91.666667%] mx-auto rounded-2xl border shadow-sm px-6 sm:px-10 py-10 md:py-12 flex flex-col items-center text-center bg-surface border-theme"
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        className="max-w-[1280px] w-[91.666667%] mx-auto rounded-3xl border border-theme shadow-xl shadow-black/5 px-8 sm:px-14 py-12 md:py-16 flex flex-col items-center text-center bg-surface relative overflow-hidden"
       >
+        {/* Subtle background flair */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl rounded-full" />
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-theme/10 blur-3xl rounded-full" />
 
-        {/* Icon */}
-        <div className="w-12 h-12 rounded-full flex items-center justify-center mb-5 text-xl bg-brand-subtle">
-          💬
+        {/* Branding/Category Indicator */}
+        <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 text-2xl bg-brand-subtle shadow-inner">
+          💡
         </div>
 
-        {/* Title */}
-        <h2 className="text-lg sm:text-xl font-bold mb-1.5 text-theme-primary">
-          Need a reason to send Salami?
-        </h2>
-        <p className="text-sm mb-8 text-theme-subtle">
-          We wrote them so you don't have to think.
+        {/* Messaging Section */}
+        <h3 className="text-xl md:text-2xl font-black mb-3 text-theme-primary tracking-tight">
+          Seeking a valid reason to send Salami?
+        </h3>
+        <p className="text-sm md:text-base mb-10 text-theme-subtle font-medium">
+          We&apos;ve curated these insights to save you the mental energy.
         </p>
 
-        {/* Quote area */}
-        <div className="w-full max-w-xl min-h-[72px] flex items-center justify-center mb-8">
+        {/* Dynamic Display Area */}
+        <div className="w-full max-w-2xl min-h-[100px] flex items-center justify-center mb-12 px-2">
           <AnimatePresence mode="wait">
-            {q ? (
+            {activeQuote ? (
               <motion.p
                 key={key}
-                initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                initial={{ opacity: 0, y: 15, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-                transition={{ duration: 0.28, ease: "easeOut" }}
-                className="text-base sm:text-lg md:text-xl font-medium leading-relaxed italic text-theme-secondary"
+                exit={{ opacity: 0, y: -15, filter: "blur(8px)" }}
+                transition={{ duration: 0.45, ease: [0.33, 1, 0.68, 1] }}
+                className="text-lg sm:text-2xl md:text-3xl font-black leading-[1.3] italic text-theme-primary px-4"
               >
-                "{q.text}" {q.emoji}
+                &ldquo;{activeQuote.text}&rdquo; <span className="not-italic inline-block ml-1">{activeQuote.emoji}</span>
               </motion.p>
             ) : (
               <motion.p
@@ -85,30 +106,45 @@ export default function MotivationGenerator() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="text-sm text-theme-subtle"
+                className="text-sm font-bold text-theme-subtle uppercase tracking-widest animate-pulse"
               >
-                Your motivation is one click away...
+                Your divine motivation is pending...
               </motion.p>
             )}
           </AnimatePresence>
         </div>
 
-        {/* CTA */}
+        {/* Interactive Trigger */}
         <motion.button
-          onClick={handleNext}
-          whileTap={{ scale: 0.96 }}
-          className="inline-flex items-center gap-2.5 px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold shadow-md shadow-emerald-600/25 transition-colors duration-150"
+          onClick={handleShuffle}
+          disabled={spinning}
+          whileTap={{ scale: 0.95 }}
+          className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-black shadow-lg shadow-emerald-600/30 transition-all duration-300 cursor-pointer overflow-hidden disabled:opacity-80"
         >
-          <motion.span
+          {/* Active shine effect */}
+          <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+          
+          <motion.div
             animate={spinning ? { rotate: 360 } : { rotate: 0 }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="inline-block"
+            transition={{ duration: 0.4, ease: "linear" }}
+            className="relative z-10"
           >
-            <Shuffle size={15} strokeWidth={2.5} />
-          </motion.span>
-          {q ? "Give me another one" : "Give me motivation"}
+            <Shuffle size={16} strokeWidth={3} className="text-emerald-50" />
+          </motion.div>
+          
+          <span className="relative z-10">
+            {activeQuote ? "Manifest Another Insight" : "Acquire Divine Motivation"}
+          </span>
         </motion.button>
+
+        {/* Contextual meta-info */}
+        <div className="mt-8 flex items-center gap-2 opacity-40">
+           <div className="w-1 h-1 rounded-full bg-theme-muted" />
+           <p className="text-[10px] font-black uppercase tracking-widest text-theme-muted">
+             Randomized Wisdom Engine v1.0
+           </p>
+           <div className="w-1 h-1 rounded-full bg-theme-muted" />
+        </div>
 
       </motion.div>
     </section>

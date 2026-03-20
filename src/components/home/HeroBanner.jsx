@@ -1,3 +1,9 @@
+/**
+ * @file HeroBanner.jsx
+ * @description The primary hero section of the EidiSend homepage. 
+ * Features dynamic falling particles, a thematic background image, and main CTAs.
+ */
+
 "use client";
 
 import { useState } from "react";
@@ -5,7 +11,14 @@ import { DollarSign, Share2 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useThemeMode } from "@/hooks/useThemeMode";
 
+// --- Configuration ---
+
+/**
+ * Particle configuration for the festive falling effect.
+ * Each object defines the visual properties and animation timing for an emoji.
+ */
 const PARTICLES = [
   { emoji: "🌙", size: 22, left: 2, delay: 0, duration: 10 },
   { emoji: "⭐", size: 14, left: 8, delay: 2.5, duration: 13 },
@@ -29,10 +42,14 @@ const PARTICLES = [
   { emoji: "⭐", size: 16, left: 93, delay: 8.5, duration: 13 },
 ];
 
+/**
+ * FallingParticle Component
+ * Renders a single emoji that falls from the top of the screen to the bottom.
+ */
 function FallingParticle({ emoji, size, delay, left, duration }) {
   return (
     <motion.span
-      aria-hidden
+      aria-hidden="true"
       initial={{ y: -80, opacity: 0 }}
       animate={{
         y: "115vh",
@@ -47,7 +64,7 @@ function FallingParticle({ emoji, size, delay, left, duration }) {
         opacity: { times: [0, 0.08, 0.88, 1], duration },
         rotate: { times: [0, 0.25, 0.5, 0.75, 1], duration, repeat: Infinity },
       }}
-      className="absolute pointer-events-none select-none"
+      className="absolute pointer-events-none select-none z-10"
       style={{ left: `${left}%`, top: 0, fontSize: size }}
     >
       {emoji}
@@ -57,125 +74,132 @@ function FallingParticle({ emoji, size, delay, left, duration }) {
 
 export default function HeroBanner() {
   const [sharing, setSharing] = useState(false);
+  const { resolvedTheme } = useThemeMode();
+  const isDark = resolvedTheme === "dark";
 
+  /**
+   * handleShare
+   * Triggers the Web Share API or copies the link to the clipboard.
+   */
   const handleShare = async () => {
     setSharing(true);
+    const shareData = {
+      title: "EidiSend - Send Digital Eid Salami",
+      text: "Share the joy this Eid by sending digital Salami to your loved ones!",
+      url: typeof window !== "undefined" ? window.location.origin : "",
+    };
+
     try {
-      if (navigator.share) {
-        await navigator.share({
-          title: "Eid Salami",
-          text: "Send digital Eid Salami to your loved ones this Eid!",
-          url: window.location.href,
-        });
+      if (typeof navigator !== "undefined" && navigator.share) {
+        await navigator.share(shareData);
       } else {
-        await navigator.clipboard.writeText(window.location.href);
+        await navigator.clipboard.writeText(shareData.url);
       }
-    } catch {
+    } catch (err) {
+      console.error("Sharing failed:", err);
     } finally {
+      // Show "Copied" state briefly
       setTimeout(() => setSharing(false), 1500);
     }
   };
 
   return (
-    <section className="relative w-full overflow-hidden min-h-[520px] md:min-h-[620px] flex items-center">
-      {/* ── Layer 1: Full background image ── */}
-      <div className="absolute inset-0">
+    <section className="relative w-full overflow-hidden min-h-[520px] md:min-h-[620px] flex items-center bg-surface">
+      
+      {/* --- Layer 1: Background Imagery --- */}
+      <div className="absolute inset-0 z-0">
         <Image
           src="/eid_salami_bangladesh.webp"
-          alt="Eid Salami Bangladesh"
+          alt="Traditional Eid celebrations in Bangladesh featuring families sharing Salami"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-center grayscale-[20%] opacity-90 transition-opacity duration-700"
         />
       </div>
 
-      {/* ── Layer 2: Overlay — left-heavy on desktop, uniform on mobile ── */}
-      <div className="absolute inset-0 bg-[#f0faf4]/70 dark:bg-[#071210]/75 md:hidden" />
-      <div
-        className="absolute inset-0 hidden md:block"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(240,250,244,0.92) 0%, rgba(240,250,244,0.85) 35%, rgba(240,250,244,0.45) 60%, rgba(240,250,244,0.08) 100%)",
-        }}
-      />
-      {/* dark mode desktop overlay */}
-      <div
-        className="absolute inset-0 hidden dark:md:block"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(7,18,16,0.92) 0%, rgba(7,18,16,0.85) 35%, rgba(7,18,16,0.45) 60%, rgba(7,18,16,0.08) 100%)",
-        }}
-      />
-      {/* Bottom fade */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#f0faf4]/60 dark:from-[#071210]/60 via-transparent to-transparent" />
+      {/* --- Layer 2: Theme-aware Overlays --- */}
+      {/* Mobile uniform tint */}
+      <div className="absolute inset-0 bg-[#f0faf4]/80 dark:bg-[#071210]/82 md:hidden z-[1]" />
 
-      {/* ── Layer 3: Falling particles ── */}
+      {/* Desktop gradient mask */}
+      <div
+        className="absolute inset-0 hidden md:block z-[1]"
+        style={{
+          background: isDark
+            ? "linear-gradient(to right, rgba(7,18,16,0.95) 0%, rgba(7,18,16,0.85) 30%, rgba(7,18,16,0.5) 50%, rgba(7,18,16,0.0) 100%)"
+            : "linear-gradient(to right, rgba(240,250,244,0.85) 0%, rgba(240,250,244,0.7) 30%, rgba(240,250,244,0.3) 50%, rgba(240,250,244,0.0) 100%)",
+        }}
+      />
+
+      {/* --- Layer 3: Particle Effects --- */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
         {PARTICLES.map((p, i) => (
           <FallingParticle key={i} {...p} />
         ))}
       </div>
 
-      {/* ── Layer 4: Content — sits on top of everything ── */}
+      {/* --- Layer 4: Foreground Content --- */}
       <div className="relative z-20 w-full max-w-[91.666667%] mx-auto py-20 md:py-28 lg:py-32">
-        {/* Mobile: centered | Desktop: left-aligned, max half-width */}
-        <div className="w-full md:max-w-[48%] text-center md:text-left mx-auto md:mx-0">
-          {/* Tagline */}
+        <div className="w-full md:max-w-[50%] text-center md:text-left mx-auto md:mx-0">
+          
+          {/* Animated Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="text-sm font-medium mb-4 tracking-wide text-brand-theme"
+            className="text-sm text-emerald-600 dark:text-emerald-400 font-bold mb-4 tracking-widest uppercase"
           >
-            Because love travels faster than cash 💸
+            Digital Tradition, Traditional Love 💸
           </motion.p>
 
-          {/* Heading */}
+          {/* Main Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold leading-[1.07] tracking-tight mb-5 text-theme-primary"
+            className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-theme-primary leading-[1.05] tracking-tight mb-6"
           >
             Eid Mubarak
           </motion.h1>
 
-          {/* Subtext */}
+          {/* Descriptive Subtext */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.16 }}
-            className="text-base md:text-lg leading-relaxed mb-8 text-theme-secondary"
+            className="text-base md:text-lg text-theme-secondary leading-relaxed mb-10 max-w-lg"
           >
-            Send a digital gift of joy to your loved ones this Eid. The fastest,
-            most secure way to share your blessings.
+            Make this Eid unforgettable for your friends and family. Send a digital gift of joy—the fastest, 
+            most secure way to share your blessings across Bangladesh.
           </motion.p>
 
-          {/* CTAs */}
+          {/* Primary Action Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.24 }}
-            className="flex flex-col md:flex-row items-center md:items-start md:justify-start justify-center gap-2.5 w-full md:w-auto"
+            className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4"
           >
             <Link
               href="/send"
-              className="inline-flex items-center justify-center gap-2 min-w-[160px] px-7 py-2.5 md:py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-sm font-bold shadow-lg shadow-emerald-600/30 transition-all duration-150"
+              className="inline-flex items-center justify-center gap-2 min-w-[180px] px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-sm font-bold shadow-lg shadow-emerald-600/30 transition-all duration-200 cursor-pointer"
             >
-              <DollarSign size={15} strokeWidth={2.5} />
-              Send Salami
+              <DollarSign size={16} strokeWidth={2.5} />
+              Send Salami now
             </Link>
 
             <button
               onClick={handleShare}
-              className="inline-flex items-center justify-center gap-2 min-w-[160px] px-7 py-2.5 md:py-3.5 rounded-xl bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-white/15 backdrop-blur-sm active:scale-95 text-sm font-semibold border border-white/60 dark:border-white/10 shadow-sm transition-all duration-150 text-slate-900 dark:text-slate-200 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 min-w-[180px] px-8 py-4 rounded-xl bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-white/15 backdrop-blur-md active:scale-95 text-theme-primary text-sm font-bold border border-white/60 dark:border-white/10 shadow-sm transition-all duration-200 cursor-pointer"
             >
-              <Share2 size={14} strokeWidth={2} />
-              {sharing ? "Link Copied!" : "Share"}
+              <Share2 size={16} strokeWidth={2} />
+              {sharing ? "Link Copied!" : "Spread the Joy"}
             </button>
           </motion.div>
+
         </div>
       </div>
+
     </section>
   );
 }
